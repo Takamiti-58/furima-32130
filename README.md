@@ -15,24 +15,19 @@
 | birth_day            | date   | null: false |
 ### Association
 
-- has_many :products dependent: :destroy
-- belongs_to :buyer dependent: :destroy
+- has_many :products
+- has_many :buyer
 
 ## buyer テーブル
 
-| Column          | Type     | Options                     |
-| --------------- | -------- | --------------------------- |
-| last_name       | string   | null: false                 |
-| first_name      | string   | null: false                 |
-| last_name_kana  | string   | null: false                 |
-| first_name_kana | string   | null: false                 |
-| post_code       | string   | null: false                 |
-| prefecture      | string   | null: false                 |
-| city            | string   | null: false                 |
-| address         | string   | null: false                 |
-| building_name   | string   |                             |
-| phone_number    | string   |                             |
-| user_id         | integer  |null:false, foreign_key: true|
+| Column          | Type     | Options                       |
+| --------------- | -------- | ----------------------------- |
+| post_code       | string   | null: false                   |
+| prefecture      | integer  | null: false                   |
+| city            | string   | null: false                   |
+| address         | string   | null: false                   |
+| building_name   | string   |                               |
+| phone_number    | string   | null: false                   |
 
 ### Association
 
@@ -63,32 +58,19 @@
 | prefecture_id | string  | null: false                  |
 | judgment      | string  |                              |
 | category_id   | integer | null:false, foreign_key: true|
-| brand_id      | integer | null:false, foreign_key: true|
-| shipping_id   | integer | null:false, foreign_key: true|
 | user_id       | integer | null:false, foreign_key: true|
 
 ### Association
 
 - belongs_to :user dependent: :destroy
-- belongs_to :category dependent: :destroy
-- belongs_to :brand dependent: :destroy
-- has_many :images dependent: :destroy
 - belongs_to_active_hash:prefecture
 
-## imeages テーブル
-
-| Column     | Type     | Options                     |
-| ---------- | -------- | --------------------------- |
-| image      | string   | null: false                 |
-| product_id | integer  |null:false, foreign_key: true|
-
-### Association
-- belongs_to :product
-
-## brand テーブル
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | index: true |
+## ordersテーブル
+| Column  | Type    | Options     |
+| ------- | ------- | ----------- |
+| user    | integer | null:false  |
+| product | string  | null: false |
 
 ### Association
-- has_many :Products
+- has_many :products
+- has_many :users
