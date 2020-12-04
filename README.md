@@ -3,18 +3,17 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| user_password   | string | null: false |
-| check_password  | string | null: false |
-| last_name       | string | null: false |
-| first_name      | string | null: false |
-| last_name_kana  | string | null: false |
-| first_name_kana | string | null: false |
-| member          | text   |             |
-| birth_day       | date   | null: false |
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| encrypted_password   | string | null: false |
+| last_name            | string | null: false |
+| first_name           | string | null: false |
+| last_name_kana       | string | null: false |
+| first_name_kana      | string | null: false |
+| member               | text   |             |
+| birth_day            | date   | null: false |
 ### Association
 
 - has_many :products dependent: :destroy
@@ -41,18 +40,6 @@
 
 - belongs_to :user
 
-## card テーブル
-
-| Column       | Type     | Options                     |
-| ------------ | -------- | --------------------------- |
-| user_id      | integer  |null:false, foreign_key: true|
-| customer_id  | string   | null: false                 |
-| card_id      | string   | null: false                 |
-
-### Association
-
-- belongs_to :user
-
 ## category テーブル
 
 | Column   | Type   | Options     |
@@ -69,8 +56,8 @@
 | Column        | Type    | Options                      |
 | ------------- | ------- | ---------------------------- |
 | name          | string  | null: false                  |
-| price         | string  | null: false                  |
-| description   | string  | null: false                  |
+| price         | integer | null: false                  |
+| description   | text    | null: false                  |
 | status        | string  | null: false                  |
 | size          | string  | null: false                  |
 | shipping_cost | string  | null: false                  |
