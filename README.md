@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :products
-- has_many :buyer
+- has_many :buyers
 
 ## buyer テーブル
 
@@ -33,16 +33,6 @@
 
 - belongs_to :user
 
-## category テーブル
-
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| ancestry | string |             |
-
-### Association
-
-- has_many :products
 
 ## product テーブル
 
@@ -52,7 +42,6 @@
 | price         | integer | null: false                  |
 | description   | text    | null: false                  |
 | status        | string  | null: false                  |
-| size          | string  | null: false                  |
 | shipping_cost | string  | null: false                  |
 | shipping_days | string  | null: false                  |
 | prefecture_id | string  | null: false                  |
@@ -62,14 +51,15 @@
 
 ### Association
 
-- belongs_to :user dependent: :destroy
+- belongs_to :user
 - belongs_to_active_hash:prefecture
+- has_one :order
 
 ## ordersテーブル
-| Column  | Type    | Options     |
-| ------- | ------- | ----------- |
-| user    | integer | null:false  |
-| product | string  | null: false |
+| Column  | Type        | Options                  |
+| ------- | ----------- | ------------------------ |
+| user    | integer     | null:false               |
+| product | references  | null: false, foreign_key |
 
 ### Association
 - has_many :products
