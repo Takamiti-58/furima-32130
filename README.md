@@ -12,13 +12,11 @@
 | first_name           | string | null: false |
 | last_name_kana       | string | null: false |
 | first_name_kana      | string | null: false |
-| member               | text   |             |
 | birth_day            | date   | null: false |
 ### Association
 
 - has_many :products dependent: :destroy
 - belongs_to :buyer dependent: :destroy
-- belongs_to :card dependent: :destroy
 
 ## buyer テーブル
 
@@ -77,7 +75,7 @@
 - has_many :images dependent: :destroy
 - belongs_to_active_hash:prefecture
 
-## integer テーブル
+## imeages テーブル
 
 | Column     | Type     | Options                     |
 | ---------- | -------- | --------------------------- |
