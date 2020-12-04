@@ -17,17 +17,19 @@
 
 - has_many :products
 - has_many :buyers
+- has_many :orders
 
 ## buyer テーブル
 
 | Column          | Type     | Options                       |
 | --------------- | -------- | ----------------------------- |
 | post_code       | string   | null: false                   |
-| prefecture      | integer  | null: false                   |
+| prefecture_id   | integer  | null: false                   |
 | city            | string   | null: false                   |
 | address         | string   | null: false                   |
 | building_name   | string   |                               |
 | phone_number    | string   | null: false                   |
+| orders_id       | integer  | null: false, foreign_key      |
 
 ### Association
 
@@ -36,18 +38,17 @@
 
 ## product テーブル
 
-| Column        | Type    | Options                      |
-| ------------- | ------- | ---------------------------- |
-| name          | string  | null: false                  |
-| price         | integer | null: false                  |
-| description   | text    | null: false                  |
-| status        | string  | null: false                  |
-| shipping_cost | string  | null: false                  |
-| shipping_days | string  | null: false                  |
-| prefecture_id | string  | null: false                  |
-| judgment      | string  |                              |
-| category_id   | integer | null:false, foreign_key: true|
-| user_id       | integer | null:false, foreign_key: true|
+| Column           | Type    | Options                      |
+| ---------------- | ------- | ---------------------------- |
+| name             | string  | null: false                  |
+| price            | integer | null: false                  |
+| description      | text    | null: false                  |
+| status_id        | integer | null: false                  |
+| shipping_cost_id | integer | null: false                  |
+| shipping_days_id | integer | null: false                  |
+| prefecture_id    | integer | null: false                  |
+| category_id      | integer | null: false                  |
+| user_id          | integer | null:false, foreign_key: true|
 
 ### Association
 
@@ -58,10 +59,9 @@
 ## ordersテーブル
 | Column  | Type        | Options                  |
 | ------- | ----------- | ------------------------ |
-| user    | integer     | null:false               |
+| user    | references  | null: false, foreign_key |
 | product | references  | null: false, foreign_key |
 
 ### Association
-- has_many :products
-- has_many :users
-- 
+- belongs_to :products
+- belongs_to :users
