@@ -13,25 +13,6 @@ describe User do
         が存在すれば登録できること" do
         expect(@user).to be_valid
         end
-        it "nicknameが6文字以上で登録できる" do
-          @user.nickname = "aaaaaaa"
-          expect(@user).to be_valid
-        end
-        it "passwordが6文字以上であれば登録できる" do
-          @user.password = "000000"
-          @user.password_confirmation = "000000"
-          expect(@user).to be_valid
-        end
-        it "emailに＠を含むこと" do
-          @user.email = "@"
-          expect(@user).to be_valid
-        end
-        it "email一意性チェック" do
-          user = create(:user, email: "example@example.com" )
-          another_user = build(:user, email: "example@example.com" )
-          another_user.valid?
-          expect(another_user.errors[:email]).to include("has already been taken")
-        end
       end
   
       context '新規登録がうまくいかないとき' do
@@ -89,7 +70,7 @@ describe User do
           expect(@user.errors.full_messages).to include("doesn't match Password")
         end
         it "パスワードが半角数字のみでは登録できないこと" do
-          @user.password = "22222"
+          @user.password = 22222
           @user.valid?
           expect(@user.errors.full_messages).to include("doesn't match Password")
         end
