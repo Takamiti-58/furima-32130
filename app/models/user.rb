@@ -1,15 +1,15 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-with_options presence: true do
+  with_options presence: true do
     validates :nickname
-    validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+    validates :email
     validates :password, length: { minimum: 6 }
     validates :encrypted_password, length: { minimum: 6 }
-    validates :first_name, format: { with: /\A[一-龥ぁ-ん]/ }
-    validates :last_name, format: { with: /\A[一-龥ぁ-ん]/ }
-    validates :first_name_kana, format: { with: /\A[ぁ-ん]/ }
-    validates :last_name_kana, format: { with: /\A[ぁ-ん]/ }
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
+    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana characters."}
     validates :birth_day
   end
 end
