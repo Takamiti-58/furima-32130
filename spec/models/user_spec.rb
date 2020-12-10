@@ -64,14 +64,14 @@ describe User do
           expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
         end
         it "パスワードが半角英語のみでは登録できないこと" do
-          @user.password = "fffff"
+          @user.password = "ffffff"
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)", "Password is too short (minimum is 6 characters)")
+          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it "パスワードが半角数字のみでは登録できないこと" do
-          @user.password = '22222'
+          @user.password = '222222'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)", "Password is too short (minimum is 6 characters)")
+          expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
         it "パスワードが全角では登録できないこと" do
           @user.password = "ああああ"
