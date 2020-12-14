@@ -9,18 +9,18 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @products = Products.new(product_params)
-    if @product.valid?
-      @product.save 
-      return redirect_to root_path
+    @products = Product.new(product_params)
+    if @products.valid?
+       @products.save
+       redirect_to products_path
     else
-      render "new"
+      render :new
     end
   end
 
   private
 
   def product_params
-  params.require(:user_product).permit()
+    params.require(:product).permit(:id, :name, :price, :description, :status_id, :shipping_cost_id, :shipping_days_id, :prefecture_id, :category_id, :user_id, :created_at, :updated_at, :image).merge(user_id: current_user.id)
   end
 end
