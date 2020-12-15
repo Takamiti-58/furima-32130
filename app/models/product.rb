@@ -5,9 +5,9 @@ class Product < ApplicationRecord
   has_one :order
   has_one_attached :image
   belongs_to_active_hash :category
-  belongs_to_active_hash :itemcondition
+  belongs_to_active_hash :status
   belongs_to_active_hash :shipping_cost
-  belongs_to_active_hash :prepare
+  belongs_to_active_hash :shipping_days
 
   with_options presence: true, numericality: { other_than: 1 } do
     validates :status_id

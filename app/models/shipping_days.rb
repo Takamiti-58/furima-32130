@@ -1,4 +1,4 @@
-class Prepare < ActiveHash::Base
+class ShippingDays < ActiveHash::Base
   include ActiveHash::Associations
   has_many :products
 
