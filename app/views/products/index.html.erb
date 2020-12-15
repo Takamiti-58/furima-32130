@@ -155,8 +155,6 @@
       </li>
       <% end %>
 
-      <%#商品がない => @productsの配列が空 %>
-      <%#商品がある => @productsの配列に何か入っている%>
       <%# 商品がない場合のダミー %>
       <% if @products.length == 0 %>
       <li class='list'>
@@ -176,7 +174,6 @@
         </div>
         <% end %>
       </li>
-      <% else %>
       <% end %>
     </ul>
   </div>
