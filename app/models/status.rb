@@ -1,4 +1,4 @@
-class Itemcondition < ActiveHash::Base
+class Status < ActiveHash::Base
   include ActiveHash::Associations
   has_many :products
   
