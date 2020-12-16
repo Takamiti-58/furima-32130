@@ -21,9 +21,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @products.destroy
-    redirect_to root_path
-    if @products.user.id != current_user.id
+    if @products.user.id == current_user.id
+      @products.destroy
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 
