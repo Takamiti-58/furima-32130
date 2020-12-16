@@ -18,6 +18,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @products = Product.find(params[:id])
+  end
+
+  def update
+    products = Product.find(params[:id])
+    if products.valid?
+       products.update(product_params)
+       redirect_to edit_product_path
+    else
+      render :edit
+    end
+  end
+
   def show
     @product = Product.find(params[:id])
   end
