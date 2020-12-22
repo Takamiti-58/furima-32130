@@ -3,11 +3,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create,:index]
 
   def index
-    if current_user.id == @product.user_id || @product.order.nil?
+    if current_user.id == @product.user_id || @product.order.present?
       redirect_to root_path
     end
-    @user_payment = UserPayment.new
-  end
+     @user_payment = UserPayment.new
+   end
 
   def create
     @user_payment = UserPayment.new(payment_params)
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "PAYJP_SECRET_KEY"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @product.price,
         card: payment_params[:token],
