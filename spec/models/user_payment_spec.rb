@@ -52,5 +52,9 @@ RSpec.describe UserPayment, type: :model do
       @user_payment.valid?
       expect(@user_payment.errors.full_messages).to include("Token can't be blank")
     end
+    it 'building_nameは空でも保存できること' do
+      @user_payment.building_name = nil
+      expect(@user_payment).to be_valid
+    end
   end
 end
