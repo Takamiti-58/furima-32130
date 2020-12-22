@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_products, only: [:index,:create]
+  before_action :authenticate_user!, only: [:create,:index]
 
   def index
+    if current_user.id == @product.user_id || @product.order.nil?
+      redirect_to root_path
+    end
     @user_payment = UserPayment.new
   end
 
