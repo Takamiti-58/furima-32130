@@ -74,7 +74,6 @@ describe Product do
           @product.valid?
           expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
         end
-    
         it "priceが10000000円以上だと出品できない" do
           @product.price = 10000000
           @product.valid?
